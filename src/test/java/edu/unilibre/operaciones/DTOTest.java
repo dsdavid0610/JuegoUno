@@ -1,9 +1,8 @@
-package edu.unilibre.dto;
+package edu.unilibre.operaciones;
 
-import org.junit.jupiter.api.Test;
-
+import edu.unilibre.dto.*;
 import java.time.LocalDate;
-
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DTOTest {

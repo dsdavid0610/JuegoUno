@@ -1,14 +1,11 @@
-package edu.unilibre.controlador;
+package edu.unilibre.operaciones;
 
-import edu.unilibre.modelo.Carta;
-import edu.unilibre.modelo.JuegoUno;
-import edu.unilibre.modelo.Jugador;
-import org.junit.jupiter.api.Assumptions;
-import org.junit.jupiter.api.Test;
-
+import edu.unilibre.controlador.*;
+import edu.unilibre.modelo.*;
 import java.awt.GraphicsEnvironment;
 import java.lang.reflect.Field;
-
+import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class VentanaUnoTest {

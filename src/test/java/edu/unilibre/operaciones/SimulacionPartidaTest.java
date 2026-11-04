@@ -1,9 +1,8 @@
-package edu.unilibre.modelo;
+package edu.unilibre.operaciones;
 
-import org.junit.jupiter.api.Test;
-
+import edu.unilibre.modelo.*;
 import java.util.Optional;
-
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SimulacionPartidaTest {

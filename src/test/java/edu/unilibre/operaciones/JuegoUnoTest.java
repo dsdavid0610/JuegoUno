@@ -1,10 +1,9 @@
-package edu.unilibre.modelo;
+package edu.unilibre.operaciones;
 
+import edu.unilibre.modelo.*;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class JuegoUnoTest {

@@ -1,11 +1,10 @@
-package edu.unilibre.dao;
+package edu.unilibre.operaciones;
 
-import edu.unilibre.dto.PartidaDTO;
-import edu.unilibre.servicio.ServicioHistorial;
-import org.junit.jupiter.api.Test;
-
+import edu.unilibre.dao.*;
+import edu.unilibre.dto.*;
+import edu.unilibre.servicio.*;
 import java.time.LocalDate;
-
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PartidaDAOMemoriaTest {

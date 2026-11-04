@@ -1,17 +1,23 @@
-package edu.unilibre.modelo;
+package edu.unilibre.operaciones;
 
-import org.junit.jupiter.api.Test;
-
+import edu.unilibre.modelo.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MazoTest {
 
-    private List<Carta> sacarTodas(Mazo mazo) {
+    // El constructor de Mazo es privado (como en el diagrama): solo JuegoUno lo crea.
+    private JuegoUno.Mazo nuevoMazo() throws Exception {
+        java.lang.reflect.Constructor<JuegoUno.Mazo> c = JuegoUno.Mazo.class.getDeclaredConstructor();
+        c.setAccessible(true);
+        return c.newInstance();
+    }
+
+    private List<Carta> sacarTodas(JuegoUno.Mazo mazo) {
         List<Carta> todas = new ArrayList<>();
         while (mazo.cantidadCartas() > 0) {
             todas.add(mazo.robar());
@@ -20,9 +26,9 @@ class MazoTest {
     }
 
     @Test
-    void elMazoTiene108CartasConLaComposicionCorrecta() {
-        assertEquals(108, new Mazo().cantidadCartas());
-        List<Carta> todas = sacarTodas(new Mazo());
+    void elMazoTiene108CartasConLaComposicionCorrecta() throws Exception {
+        assertEquals(108, nuevoMazo().cantidadCartas());
+        List<Carta> todas = sacarTodas(nuevoMazo());
 
         Map<String, Long> porValor = todas.stream()
                 .collect(Collectors.groupingBy(Carta::obtenerValor, Collectors.counting()));
@@ -44,8 +50,8 @@ class MazoTest {
     }
 
     @Test
-    void robarBarajarReponerYReiniciar() {
-        Mazo mazo = new Mazo();
+    void robarBarajarReponerYReiniciar() throws Exception {
+        JuegoUno.Mazo mazo = nuevoMazo();
         assertNotNull(mazo.robar());
         assertEquals(107, mazo.cantidadCartas());
 

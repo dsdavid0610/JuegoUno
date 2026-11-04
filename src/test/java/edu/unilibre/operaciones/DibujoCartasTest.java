@@ -1,11 +1,10 @@
-package edu.unilibre.vista;
+package edu.unilibre.operaciones;
 
-import org.junit.jupiter.api.Test;
-
+import edu.unilibre.vista.*;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DibujoCartasTest {

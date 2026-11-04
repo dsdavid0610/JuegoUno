@@ -1,14 +1,10 @@
-package edu.unilibre.servicio;
+package edu.unilibre.operaciones;
 
-import edu.unilibre.dao.PartidaDAO;
-import edu.unilibre.dao.PartidaDAOMemoria;
-import edu.unilibre.dto.EstadisticasDTO;
-import edu.unilibre.dto.PartidaDTO;
-import edu.unilibre.modelo.Carta;
-import edu.unilibre.modelo.JuegoUno;
-import edu.unilibre.modelo.Jugador;
+import edu.unilibre.dao.*;
+import edu.unilibre.dto.*;
+import edu.unilibre.modelo.*;
+import edu.unilibre.servicio.*;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class ServicioHistorialTest {
