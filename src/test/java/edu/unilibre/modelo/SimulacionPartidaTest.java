@@ -1,6 +1,5 @@
-package edu.unilibre.operaciones;
+package edu.unilibre.modelo;
 
-import edu.unilibre.modelo.*;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

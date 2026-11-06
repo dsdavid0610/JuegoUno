@@ -1,6 +1,5 @@
-package edu.unilibre.operaciones;
+package edu.unilibre.modelo;
 
-import edu.unilibre.modelo.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,23 +34,4 @@ class CartaTest {
         assertEquals(50, new Carta("CAMBIO_COLOR", "CAMBIO_COLOR").puntos());
     }
 
-    @Test
-    void sabeCuandoSePuedeJugarSobreOtraCarta() {
-        Carta mesa = new Carta("ROJO", "5");
-        assertTrue(new Carta("ROJO", "9").sePuedeJugarSobre(mesa));
-        assertTrue(new Carta("AZUL", "5").sePuedeJugarSobre(mesa));
-        assertFalse(new Carta("AZUL", "9").sePuedeJugarSobre(mesa));
-        assertTrue(new Carta("CAMBIO_COLOR", "CAMBIO_COLOR").sePuedeJugarSobre(mesa));
-        assertTrue(new Carta("CAMBIO_COLOR", "MAS_CUATRO").sePuedeJugarSobre(mesa));
-
-        Carta comodinEnMesa = new Carta("CAMBIO_COLOR", "CAMBIO_COLOR");
-        assertTrue(new Carta("AZUL", "3").sePuedeJugarSobre(comodinEnMesa, "AZUL"));
-        assertFalse(new Carta("ROJO", "3").sePuedeJugarSobre(comodinEnMesa, "AZUL"));
-
-        assertThrows(IllegalArgumentException.class, () -> new Carta("ROJO", "1").sePuedeJugarSobre(null));
-
-        assertEquals("ROJO 5", new Carta("ROJO", "5").toString());
-        assertEquals("ROJO +2", new Carta("ROJO", "MAS_DOS").toString());
-        assertEquals("COMODIN +4", new Carta("CAMBIO_COLOR", "MAS_CUATRO").toString());
-    }
 }

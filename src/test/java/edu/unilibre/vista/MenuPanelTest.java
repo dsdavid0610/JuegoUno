@@ -1,6 +1,5 @@
-package edu.unilibre.operaciones;
+package edu.unilibre.vista;
 
-import edu.unilibre.vista.*;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;

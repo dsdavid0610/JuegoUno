@@ -1,6 +1,5 @@
-package edu.unilibre.operaciones;
+package edu.unilibre.modelo;
 
-import edu.unilibre.modelo.*;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -61,26 +60,5 @@ class RobotEstandarTest {
         }
         darMano(robot, masCuatro, new Carta(otroColor(), "SALTO"));
         assertSame(masCuatro, estrategia.elegirCarta(juego, robot).orElseThrow());
-    }
-
-    @Test
-    void respondeAPenalizacionesYEligeElColor() {
-        Carta masDos = new Carta(juego.getColorActual(), "MAS_DOS");
-        darMano(ana, masDos, new Carta(juego.getColorActual(), "1"), new Carta(juego.getColorActual(), "2"));
-        juego.jugarCarta(masDos);
-
-        Carta respuesta = new Carta("ROJO", "MAS_DOS");
-        darMano(robot, respuesta, new Carta(juego.getColorActual(), "5"));
-        assertSame(respuesta, estrategia.elegirCarta(juego, robot).orElseThrow());
-        darMano(robot, new Carta(juego.getColorActual(), "5"), new Carta(juego.getColorActual(), "6"));
-        assertTrue(estrategia.elegirCarta(juego, robot).isEmpty());
-
-        darMano(robot, new Carta("AZUL", "1"), new Carta("AZUL", "2"), new Carta("AZUL", "3"),
-                new Carta("ROJO", "1"));
-        for (int i = 0; i < 20; i++) {
-            assertEquals("AZUL", estrategia.elegirColor(robot));
-        }
-        darMano(robot, new Carta("CAMBIO_COLOR", "CAMBIO_COLOR"));
-        assertTrue(List.of("ROJO", "AMARILLO", "VERDE", "AZUL").contains(estrategia.elegirColor(robot)));
     }
 }

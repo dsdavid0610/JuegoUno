@@ -1,6 +1,5 @@
-package edu.unilibre.operaciones;
+package edu.unilibre.controlador;
 
-import edu.unilibre.controlador.*;
 import edu.unilibre.modelo.*;
 import java.awt.GraphicsEnvironment;
 import java.lang.reflect.Field;

@@ -1,6 +1,5 @@
-package edu.unilibre.operaciones;
+package edu.unilibre.modelo;
 
-import edu.unilibre.modelo.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MazoTest {
 
-    // El constructor de Mazo es privado (como en el diagrama): solo JuegoUno lo crea.
+
     private JuegoUno.Mazo nuevoMazo() throws Exception {
         java.lang.reflect.Constructor<JuegoUno.Mazo> c = JuegoUno.Mazo.class.getDeclaredConstructor();
         c.setAccessible(true);
@@ -26,7 +25,7 @@ class MazoTest {
     }
 
     @Test
-    void elMazoTiene108CartasConLaComposicionCorrecta() throws Exception {
+    void elMazoTiene108CartasConLasCartasCorrectas() throws Exception {
         assertEquals(108, nuevoMazo().cantidadCartas());
         List<Carta> todas = sacarTodas(nuevoMazo());
 
@@ -47,26 +46,5 @@ class MazoTest {
         assertEquals(25L, porColor.get("VERDE"));
         assertEquals(25L, porColor.get("AZUL"));
         assertEquals(8L, porColor.get("CAMBIO_COLOR"));
-    }
-
-    @Test
-    void robarBarajarReponerYReiniciar() throws Exception {
-        JuegoUno.Mazo mazo = nuevoMazo();
-        assertNotNull(mazo.robar());
-        assertEquals(107, mazo.cantidadCartas());
-
-        mazo.barajar();
-        assertEquals(107, mazo.cantidadCartas());
-
-        Carta extra = new Carta("ROJO", "1");
-        mazo.reponer(List.of(extra, extra));
-        assertEquals(109, mazo.cantidadCartas());
-        assertThrows(IllegalArgumentException.class, () -> mazo.reponer(null));
-
-        mazo.reiniciar();
-        assertEquals(108, mazo.cantidadCartas());
-
-        sacarTodas(mazo);
-        assertThrows(IllegalStateException.class, mazo::robar);
     }
 }

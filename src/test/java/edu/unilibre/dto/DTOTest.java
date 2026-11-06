@@ -1,6 +1,5 @@
-package edu.unilibre.operaciones;
+package edu.unilibre.dto;
 
-import edu.unilibre.dto.*;
 import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

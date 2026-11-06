@@ -1,7 +1,6 @@
-package edu.unilibre.operaciones;
+package edu.unilibre.vista;
 
 import edu.unilibre.modelo.*;
-import edu.unilibre.vista.*;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import org.junit.jupiter.api.Test;

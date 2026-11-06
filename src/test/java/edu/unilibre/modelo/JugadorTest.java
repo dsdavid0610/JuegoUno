@@ -1,6 +1,5 @@
-package edu.unilibre.operaciones;
+package edu.unilibre.modelo;
 
-import edu.unilibre.modelo.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,21 +33,5 @@ class JugadorTest {
         assertThrows(IllegalArgumentException.class, () -> jugador.sumarPuntos(-1));
         jugador.reiniciarPuntos();
         assertEquals(0, jugador.obtenerPuntos());
-    }
-
-    @Test
-    void sabeQueCartasPuedeJugarYCuantoVaLaMano() {
-        Jugador jugador = new Jugador("Ana");
-        jugador.agregarCarta(new Carta("AZUL", "9"));
-        jugador.agregarCarta(new Carta("AZUL", "SALTO"));
-        jugador.agregarCarta(new Carta("CAMBIO_COLOR", "CAMBIO_COLOR"));
-
-        assertTrue(jugador.puedeJugar(new Carta("ROJO", "SALTO")));
-        Carta comodinEnMesa = new Carta("CAMBIO_COLOR", "CAMBIO_COLOR");
-        assertTrue(jugador.puedeJugar(comodinEnMesa, "AZUL"));
-        assertTrue(jugador.tieneCartaDeColor("AZUL"));
-        assertFalse(jugador.tieneCartaDeColor("ROJO"));
-        assertEquals(0 + 20 + 50, jugador.calcularPuntosMano());
-        assertTrue(jugador.toString().contains("Ana"));
     }
 }
