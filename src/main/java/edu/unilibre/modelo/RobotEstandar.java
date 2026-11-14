@@ -20,7 +20,7 @@ public class RobotEstandar implements EstrategiaRobot {
 
     @Override
     public Optional<Carta> elegirCarta(JuegoUno juego, Jugador robot) {
-        List<Carta> jugables = robot.obtenerMano().stream()
+        List<Carta> jugables = robot.getMano().stream()
                 .filter(carta -> esJugable(juego, robot, carta))
                 .toList();
         if (jugables.isEmpty()) {
@@ -45,8 +45,8 @@ public class RobotEstandar implements EstrategiaRobot {
     public String elegirColor(Jugador robot) {
         Map<String, Long> conteo = colores.stream().collect(Collectors.toMap(
                 color -> color,
-                color -> robot.obtenerMano().stream()
-                        .filter(carta -> carta.obtenerColor().equals(color))
+                color -> robot.getMano().stream()
+                        .filter(carta -> carta.getColor().equals(color))
                         .count()));
         long maximo = Collections.max(conteo.values());
         List<String> mejores = colores.stream().filter(color -> conteo.get(color) == maximo).toList();

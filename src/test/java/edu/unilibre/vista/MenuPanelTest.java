@@ -33,3 +33,4 @@ class MenuPanelTest {
         assertEquals(" ", menu.getLblError().getText());
     }
 }
+

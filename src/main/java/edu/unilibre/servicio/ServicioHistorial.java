@@ -35,10 +35,10 @@ public class ServicioHistorial {
         PartidaDTO partida = PartidaDTO.crear(
                 dao.siguienteId(),
                 LocalDate.now(),
-                humano.obtenerNombre(),
-                ganador.obtenerNombre(),
+                humano.getNombre(),
+                ganador.getNombre(),
                 ganador == humano,
-                ganador.obtenerPuntos(),
+                ganador.getPuntos(),
                 juego.getNumeroRonda());
         dao.guardar(partida);
         cantidadRobots = juego.cantidadJugadores() - 1;

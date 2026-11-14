@@ -4,11 +4,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import lombok.Getter;
+
 
 public class Jugador {
 
+    @Getter
     private final String nombre;
     private final List<Carta> mano;
+    @Getter
     private int puntos;
 
     public Jugador(String nombre) {
@@ -20,16 +24,8 @@ public class Jugador {
         this.puntos = 0;
     }
 
-    public String obtenerNombre() {
-        return nombre;
-    }
-
-    public List<Carta> obtenerMano() {
+    public List<Carta> getMano() {
         return Collections.unmodifiableList(mano);
-    }
-
-    public int obtenerPuntos() {
-        return puntos;
     }
 
     public void agregarCarta(Carta carta) {
@@ -85,7 +81,7 @@ public class Jugador {
     }
 
     public boolean tieneCartaDeColor(String color) {
-        return mano.stream().anyMatch(carta -> carta.obtenerColor().equals(color));
+        return mano.stream().anyMatch(carta -> carta.getColor().equals(color));
     }
 
     public int calcularPuntosMano() {

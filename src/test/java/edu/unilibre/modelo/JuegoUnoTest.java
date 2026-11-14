@@ -53,7 +53,7 @@ class JuegoUnoTest {
         assertEquals(79, juego.cartasEnMazo());
         int enManos = juego.getJugadores().stream().mapToInt(Jugador::cantidadCartas).sum();
         assertEquals(108, enManos + juego.cartasEnMazo() + juego.cartasEnPila());
-        assertEquals(juego.getCartaSuperior().obtenerColor(), juego.getColorActual());
+        assertEquals(juego.getCartaSuperior().getColor(), juego.getColorActual());
 
         for (int i = 0; i < 100; i++) {
             JuegoUno otro = new JuegoUno();

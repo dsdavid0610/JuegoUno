@@ -54,8 +54,8 @@ class SimulacionPartidaTest {
             }
             assertTrue(pasos < limitePasos, "La partida no terminó");
             assertNotNull(juego.getGanadorPartida());
-            assertTrue(juego.getGanadorPartida().obtenerPuntos() >= 250);
-            long conPuntosAltos = juego.getJugadores().stream().filter(j -> j.obtenerPuntos() >= 250).count();
+            assertTrue(juego.getGanadorPartida().getPuntos() >= 250);
+            long conPuntosAltos = juego.getJugadores().stream().filter(j -> j.getPuntos() >= 250).count();
             assertEquals(1, conPuntosAltos);
         }
 

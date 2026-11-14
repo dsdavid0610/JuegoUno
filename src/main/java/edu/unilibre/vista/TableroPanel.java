@@ -49,7 +49,7 @@ public class TableroPanel extends JPanel {
         this.juego = juego;
         this.humano = humano;
         this.acciones = acciones;
-        this.cartasMano = new ArrayList<>(humano.obtenerMano());
+        this.cartasMano = new ArrayList<>(humano.getMano());
         this.ultimaCartaVista = juego.getCartaSuperior();
         setBackground(new Color(21, 80, 55));
         setPreferredSize(new Dimension(1200, 800));
@@ -85,9 +85,8 @@ public class TableroPanel extends JPanel {
                 && juego.getJugadorActual() == humano;
     }
 
-    /** Vuelve a leer la mano del humano y repinta. */
     public void actualizar() {
-        cartasMano = new ArrayList<>(humano.obtenerMano());
+        cartasMano = new ArrayList<>(humano.getMano());
         Carta tope = juego.getCartaSuperior();
         if (tope != null && tope != ultimaCartaVista) {
             if (ultimaCartaVista != null && tope.esReversa() && juego.cantidadJugadores() > 2) {
@@ -307,8 +306,8 @@ public class TableroPanel extends JPanel {
             g2.fillOval(26, y - 10, 10, 10);
             g2.setFont(new Font(Font.SANS_SERIF, enTurno ? Font.BOLD : Font.PLAIN, 13));
             g2.setColor(enTurno ? new Color(246, 196, 32) : new Color(230, 240, 235));
-            g2.drawString(j.obtenerNombre(), 44, y);
-            String puntos = String.valueOf(j.obtenerPuntos());
+            g2.drawString(j.getNombre(), 44, y);
+            String puntos = String.valueOf(j.getPuntos());
             g2.drawString(puntos, 180 - g2.getFontMetrics().stringWidth(puntos), y);
         }
     }
@@ -341,9 +340,9 @@ public class TableroPanel extends JPanel {
                 DibujoCartas.dibujarCartas(gc, -100 / 2, -146 / 2, null, null);
                 gc.dispose();
             }
-            avatar(g2, cx, 68, 25, puesto, rival.obtenerNombre(), enTurno);
+            avatar(g2, cx, 68, 25, puesto, rival.getNombre(), enTurno);
             insignia(g2, cx + 26, 38, rival.cantidadCartas());
-            pildora(g2, rival.obtenerNombre(), cx, 160, 13, Color.WHITE);
+            pildora(g2, rival.getNombre(), cx, 160, 13, Color.WHITE);
         }
     }
 
@@ -389,7 +388,6 @@ public class TableroPanel extends JPanel {
     }
 
     private void dibujarCentro(Graphics2D g2) {
-        // mazo
         for (int i = 2; i >= 0; i--) {
             DibujoCartas.dibujarCartas(g2, 405 + i * 3, 280 - i * 3, null, null);
         }
@@ -398,8 +396,6 @@ public class TableroPanel extends JPanel {
         pildora(g2, "ROBAR", 455, 462, 13, sinJugada ? new Color(255, 232, 90) : new Color(238, 214, 90));
         g2.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 12));
         centrado(g2, juego.cartasEnMazo() + (juego.cartasEnMazo() == 1 ? " carta en el mazo" : " en el mazo"), 455, 488, new Color(205, 220, 212));
-
-        // anillo de color y sentido del juego
         double cx = 667;
         double cy = 355;
         Color activo = DibujoCartas.colorDe(juego.getColorActual());
@@ -420,15 +416,13 @@ public class TableroPanel extends JPanel {
             flechaCircular(g2, cx, cy, 158, 285, 200);
             flechaCircular(g2, cx, cy, 158, 105, 20);
         }
-
-        // carta de la mesa
         Carta tope = juego.getCartaSuperior();
         Graphics2D gc = (Graphics2D) g2.create();
         gc.translate(cx, cy);
         gc.rotate(Math.toRadians(-5));
         gc.scale(1.12, 1.12);
         DibujoCartas.dibujarCartas(gc, -100 / 2, -146 / 2,
-                tope.obtenerColor(), tope.obtenerValor());
+                tope.getColor(), tope.getValor());
         gc.dispose();
     }
 
@@ -469,7 +463,7 @@ public class TableroPanel extends JPanel {
             Graphics2D gc = (Graphics2D) g2.create();
             gc.transform(transformada(i));
             DibujoCartas.dibujarCartas(gc, -100 / 2, -146 / 2,
-                    carta.obtenerColor(), carta.obtenerValor());
+                    carta.getColor(), carta.getValor());
             gc.dispose();
         }
     }
@@ -477,10 +471,10 @@ public class TableroPanel extends JPanel {
     private void dibujarHumano(Graphics2D g2) {
         int puesto = juego.getJugadores().indexOf(humano);
         boolean enTurno = esTurnoHumano();
-        avatar(g2, 66, 682, 33, puesto, humano.obtenerNombre(), enTurno);
-        pildora(g2, humano.obtenerNombre(), 66, 738, 13, Color.WHITE);
+        avatar(g2, 66, 682, 33, puesto, humano.getNombre(), enTurno);
+        pildora(g2, humano.getNombre(), 66, 738, 13, Color.WHITE);
         g2.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 12));
-        String turno = enTurno ? "¡Es tu turno!" : "Turno: " + juego.getJugadorActual().obtenerNombre();
+        String turno = enTurno ? "¡Es tu turno!" : "Turno: " + juego.getJugadorActual().getNombre();
         centrado(g2, turno, 66, 764, new Color(205, 220, 212));
     }
 
@@ -538,7 +532,7 @@ public class TableroPanel extends JPanel {
         g2.drawString(fin ? "R E S U L T A D O   F I N A L" : "F I N   D E   L A   R O N D A  " + juego.getNumeroRonda(), 48, 54);
         g2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 34));
         g2.setColor(Color.WHITE);
-        g2.drawString("¡" + (ganador == null ? "Nadie" : ganador.obtenerNombre()) + " ganó la " + que + "!", 48, 90);
+        g2.drawString("¡" + (ganador == null ? "Nadie" : ganador.getNombre()) + " ganó la " + que + "!", 48, 90);
 
         List<Jugador> jugadores = juego.getJugadores();
         List<Jugador> rivales = jugadores.stream().filter(j -> j != humano).toList();
@@ -552,8 +546,8 @@ public class TableroPanel extends JPanel {
 
     private void resumenFinal(Graphics2D g2, Jugador j, int puesto, double cx, double cy, double r,
                               boolean gana, String que) {
-        avatar(g2, cx, cy, r, puesto, j.obtenerNombre(), gana);
-        pildora(g2, j.obtenerNombre(), cx, cy + r + 24, 13, Color.WHITE);
+        avatar(g2, cx, cy, r, puesto, j.getNombre(), gana);
+        pildora(g2, j.getNombre(), cx, cy + r + 24, 13, Color.WHITE);
         g2.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 12));
         String texto = gana ? "Ganador de la " + que
                 : j.cantidadCartas() + (j.cantidadCartas() == 1 ? " carta" : " cartas");

@@ -194,7 +194,6 @@ public class VentanaUno extends JFrame implements InicioMenuPanel, AccionesTable
         }
     }
 
-    /** Botón de fin de ronda: empieza la siguiente ronda o, si acabó la partida, vuelve al menú. */
     @Override
     public void botonFin() {
         if (!juego.hayGanador()) {
@@ -235,7 +234,7 @@ public class VentanaUno extends JFrame implements InicioMenuPanel, AccionesTable
             if (eleccion.isPresent()) {
                 Carta carta = eleccion.get();
                 juego.jugarCarta(carta);
-                mensaje.append(robot.obtenerNombre()).append(" jugó ").append(describir(carta));
+                mensaje.append(robot.getNombre()).append(" jugó ").append(describir(carta));
                 error = anotarPenalizacionUno(mensaje);
                 if (juego.hayColorPendiente()) {
                     String color = estrategia.elegirColor(robot);
@@ -249,12 +248,12 @@ public class VentanaUno extends JFrame implements InicioMenuPanel, AccionesTable
             } else {
                 int cantidad = Math.max(1, juego.getPenalizacionAcumulada());
                 juego.robarCarta();
-                mensaje.append(robot.obtenerNombre()).append(" robó ").append(cantidad)
+                mensaje.append(robot.getNombre()).append(" robó ").append(cantidad)
                         .append(cantidad == 1 ? " carta" : " cartas");
                 error = anotarPenalizacionUno(mensaje);
             }
         } catch (IllegalArgumentException | IllegalStateException ex) {
-            mensaje.append("Error en el turno de ").append(robot.obtenerNombre()).append(": ").append(ex.getMessage());
+            mensaje.append("Error en el turno de ").append(robot.getNombre()).append(": ").append(ex.getMessage());
             error = true;
         }
         tablero.mostrarToast(mensaje.toString(), error);
@@ -330,7 +329,7 @@ public class VentanaUno extends JFrame implements InicioMenuPanel, AccionesTable
             return false;
         }
         Jugador olvidadizo = juego.getJugadorPenalizadoUno();
-        mensaje.append(" · ").append(olvidadizo.obtenerNombre()).append(" no dijo UNO y roba 2 cartas");
+        mensaje.append(" · ").append(olvidadizo.getNombre()).append(" no dijo UNO y roba 2 cartas");
         return olvidadizo == humano;
     }
 
@@ -357,8 +356,8 @@ public class VentanaUno extends JFrame implements InicioMenuPanel, AccionesTable
             return "Comodín de color";
         }
         String valor = carta.esMasDos() ? "+2" : carta.esSalta() ? "Salta"
-                : carta.esReversa() ? "Reversa" : carta.obtenerValor();
-        return nombreColor(carta.obtenerColor()) + " " + valor;
+                : carta.esReversa() ? "Reversa" : carta.getValor();
+        return nombreColor(carta.getColor()) + " " + valor;
     }
 
     private void refrescar() {
@@ -376,25 +375,25 @@ public class VentanaUno extends JFrame implements InicioMenuPanel, AccionesTable
             lblMesa.setText(humanoGano ? "¡Victoria!" : "Derrota");
             lblMazo.setText(humanoGano
                     ? "Terminaste la partida en " + rondas(juego.getNumeroRonda())
-                    : ganador.obtenerNombre() + " llegó a " + ganador.obtenerPuntos() + " puntos en "
+                    : ganador.getNombre() + " llegó a " + ganador.getPuntos() + " puntos en "
                     + rondas(juego.getNumeroRonda()));
             btnSecundario.setText("Volver al menú");
             btnFin.setText("Jugar de nuevo");
         } else {
             lblTurno.setText("RONDA " + juego.getNumeroRonda());
             lblMesa.setText("Fin de la ronda");
-            lblMazo.setText(ganador.obtenerNombre() + " suma " + juego.getPuntosGanadorRonda() + " puntos");
+            lblMazo.setText(ganador.getNombre() + " suma " + juego.getPuntosGanadorRonda() + " puntos");
             btnSecundario.setText("Menú");
             btnFin.setText("Siguiente ronda");
         }
         List<Jugador> jugadores = juego.getJugadores();
         List<Jugador> ordenados = jugadores.stream()
-                .sorted(Comparator.comparingInt(Jugador::obtenerPuntos).reversed()).toList();
+                .sorted(Comparator.comparingInt(Jugador::getPuntos).reversed()).toList();
         for (int i = 0; i < cantidadJugadoresVisibles; i++) {
             Jugador jugador = ordenados.get(i);
             etiquetas[i].setIcon(punto(TableroPanel.colorJugador(jugadores.indexOf(jugador))));
-            etiquetas[i].setText(jugador.obtenerNombre());
-            campos[i].setText(String.valueOf(jugador.obtenerPuntos()));
+            etiquetas[i].setText(jugador.getNombre());
+            campos[i].setText(String.valueOf(jugador.getPuntos()));
         }
         panelResultado.setVisible(true);
         panelResultado.revalidate();
@@ -414,9 +413,6 @@ public class VentanaUno extends JFrame implements InicioMenuPanel, AccionesTable
         panelResultado.setAlignmentX(Component.CENTER_ALIGNMENT);
         panelResultado.setAlignmentY(Component.CENTER_ALIGNMENT);
         panelResultado.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
-
-        // La tarjeta de resultado se dibuja encima de la mesa: hay que avisarle a Swing que los
-        // componentes se superponen, o la mesa se repinta sobre la tarjeta y esta desaparece.
         pantallaJuego = new JPanel() {
             @Override
             public boolean isOptimizedDrawingEnabled() {

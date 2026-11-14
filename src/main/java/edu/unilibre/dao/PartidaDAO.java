@@ -8,7 +8,6 @@ import java.util.Optional;
 
 public interface PartidaDAO {
 
-    /** Siguiente identificador libre. */
     int siguienteId();
 
     List<PartidaDTO> buscarPorJugador(String nombre);

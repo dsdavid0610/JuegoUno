@@ -67,8 +67,6 @@ class TableroPanelTest {
         clic(tablero, 455, 380);
         assertEquals(1, acciones.robadas);
 
-        // Se comprueba que el tablero se actualiza y se dibuja sin acceder
-        // a métodos internos no públicos de TableroPanel.
         for (int i = 0; i < 15; i++) {
             humano.agregarCarta(new Carta("ROJO", "1"));
         }

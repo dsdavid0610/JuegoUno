@@ -30,7 +30,7 @@ class MazoTest {
         List<Carta> todas = sacarTodas(nuevoMazo());
 
         Map<String, Long> porValor = todas.stream()
-                .collect(Collectors.groupingBy(Carta::obtenerValor, Collectors.counting()));
+                .collect(Collectors.groupingBy(Carta::getValor, Collectors.counting()));
         assertEquals(4L, porValor.get("0"));
         assertEquals(8L, porValor.get("5"));
         assertEquals(8L, porValor.get("SALTO"));
@@ -40,7 +40,7 @@ class MazoTest {
         assertEquals(4L, porValor.get("CAMBIO_COLOR"));
 
         Map<String, Long> porColor = todas.stream()
-                .collect(Collectors.groupingBy(Carta::obtenerColor, Collectors.counting()));
+                .collect(Collectors.groupingBy(Carta::getColor, Collectors.counting()));
         assertEquals(25L, porColor.get("ROJO"));
         assertEquals(25L, porColor.get("AMARILLO"));
         assertEquals(25L, porColor.get("VERDE"));

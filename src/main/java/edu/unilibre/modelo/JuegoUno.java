@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import lombok.Getter;
+
 
 public class JuegoUno {
 
@@ -16,14 +18,20 @@ public class JuegoUno {
     private boolean rondaIniciada;
     private boolean rondaTerminada;
     private boolean unoPendiente;
+    @Getter
     private Jugador jugadorQueDebeDecirUno;
     private boolean penalizadoPorUno;
+    @Getter
     private Jugador jugadorPenalizadoUno;
     private int puntosGanador;
+    @Getter
     private int numeroRonda;
+    @Getter
     private Jugador ganadorPartida;
+    @Getter
     private String colorActual;
     private boolean colorPendiente;
+    @Getter
     private int penalizacionAcumulada;
 
     public JuegoUno() {
@@ -102,7 +110,7 @@ public class JuegoUno {
         mazo.reponer(descartadas);
         pila.add(inicial);
 
-        colorActual = inicial.obtenerColor();
+        colorActual = inicial.getColor();
         turno = 0;
         sentidoHorario = true;
         numeroRonda++;
@@ -146,7 +154,7 @@ public class JuegoUno {
         }
         Jugador actual = getJugadorActual();
         if (!actual.tieneCarta(carta)) {
-            throw new IllegalArgumentException("Esa carta no está en la mano de " + actual.obtenerNombre());
+            throw new IllegalArgumentException("Esa carta no está en la mano de " + actual.getNombre());
         }
         validarJugada(actual, carta);
 
@@ -192,7 +200,7 @@ public class JuegoUno {
             colorPendiente = true;
             return;
         }
-        colorActual = carta.obtenerColor();
+        colorActual = carta.getColor();
         if (carta.esMasDos()) {
             penalizacionAcumulada += 2;
             avanzarTurno(1);
@@ -282,7 +290,7 @@ public class JuegoUno {
                 .mapToInt(Jugador::calcularPuntosMano)
                 .sum();
         ganador.sumarPuntos(puntosGanador);
-        if (ganador.obtenerPuntos() >= 250) {
+        if (ganador.getPuntos() >= 250) {
             ganadorPartida = ganador;
         }
     }
@@ -344,10 +352,6 @@ public class JuegoUno {
         return pila.isEmpty() ? null : pila.get(pila.size() - 1);
     }
 
-    public String getColorActual() {
-        return colorActual;
-    }
-
     public boolean hayColorPendiente() {
         return colorPendiente;
     }
@@ -356,16 +360,8 @@ public class JuegoUno {
         return unoPendiente;
     }
 
-    public Jugador getJugadorQueDebeDecirUno() {
-        return jugadorQueDebeDecirUno;
-    }
-
     public boolean huboPenalizacionUno() {
         return penalizadoPorUno;
-    }
-
-    public Jugador getJugadorPenalizadoUno() {
-        return jugadorPenalizadoUno;
     }
 
     public boolean hayGanador() {
@@ -379,16 +375,8 @@ public class JuegoUno {
         return jugadores.stream().filter(Jugador::gano).findFirst().orElse(null);
     }
 
-    public Jugador getGanadorPartida() {
-        return ganadorPartida;
-    }
-
     public int getPuntosGanadorRonda() {
         return puntosGanador;
-    }
-
-    public int getNumeroRonda() {
-        return numeroRonda;
     }
 
     public int cartasEnMazo() {
@@ -399,15 +387,11 @@ public class JuegoUno {
         return pila.size();
     }
 
-    public int getPenalizacionAcumulada() {
-        return penalizacionAcumulada;
-    }
-
     public boolean puedeContrarrestarPenalizacion() {
         if (!rondaIniciada || rondaTerminada || penalizacionAcumulada == 0) {
             return false;
         }
-        return getJugadorActual().obtenerMano().stream()
+        return getJugadorActual().getMano().stream()
                 .anyMatch(carta -> carta.esMasDos() || carta.esMasCuatro());
     }
 

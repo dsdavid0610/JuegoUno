@@ -2,6 +2,9 @@ package edu.unilibre.modelo;
 
 import java.util.Arrays;
 
+import lombok.Getter;
+
+@Getter
 public class Carta {
 
     private final String color;
@@ -37,14 +40,6 @@ public class Carta {
         return Arrays.stream(TipoCarta.values())
                 .filter(t -> t != TipoCarta.NUMERO)
                 .anyMatch(t -> t.name().equals(valor));
-    }
-
-    public String obtenerColor() {
-        return color;
-    }
-
-    public String obtenerValor() {
-        return valor;
     }
 
     public boolean esSalta() {

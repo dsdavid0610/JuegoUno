@@ -7,8 +7,8 @@ class CartaTest {
 
     @Test
     void validaClasificaYPuntuaLasCartas() {
-        assertEquals("ROJO", new Carta("ROJO", "5").obtenerColor());
-        assertEquals("5", new Carta("ROJO", "5").obtenerValor());
+        assertEquals("ROJO", new Carta("ROJO", "5").getColor());
+        assertEquals("5", new Carta("ROJO", "5").getValor());
 
         assertThrows(IllegalArgumentException.class, () -> new Carta("MORADO", "5"));
         assertThrows(IllegalArgumentException.class, () -> new Carta("ROJO", "10"));
@@ -35,3 +35,4 @@ class CartaTest {
     }
 
 }
+
