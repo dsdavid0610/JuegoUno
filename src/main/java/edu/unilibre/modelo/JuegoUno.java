@@ -47,8 +47,8 @@ public class JuegoUno {
         if (rondaIniciada) {
             throw new IllegalStateException("No se pueden agregar jugadores con la partida en curso");
         }
-        if (jugadores.size() >= 10) {
-            throw new IllegalStateException("Máximo 10 jugadores");
+        if (jugadores.size() > 5) {
+            throw new IllegalStateException("Máximo 4 jugadores");
         }
         jugadores.add(new Jugador(nombre));
     }
