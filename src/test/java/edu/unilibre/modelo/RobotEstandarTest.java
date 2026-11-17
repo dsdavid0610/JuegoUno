@@ -15,7 +15,7 @@ class RobotEstandarTest {
     @BeforeEach
     void preparar() {
         juego = new JuegoUno();
-        juego.agregarJugador("Ana");
+        juego.agregarJugador("Robert");
         juego.agregarJugador("Robot 1");
         juego.agregarJugador("Robot 2");
         juego.agregarJugador("Robot 3");

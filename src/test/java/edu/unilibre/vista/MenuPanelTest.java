@@ -27,9 +27,9 @@ class MenuPanelTest {
         assertTrue(llamadas.isEmpty());
         assertTrue(menu.getLblError().getText().contains("nombre"));
 
-        menu.getCampoNombre().setText("  Ana ");
+        menu.getCampoNombre().setText("  Antonio ");
         menu.arrancar();
-        assertEquals(List.of("Ana:3"), llamadas);
+        assertEquals(List.of("Antonio:3"), llamadas);
         assertEquals(" ", menu.getLblError().getText());
     }
 }

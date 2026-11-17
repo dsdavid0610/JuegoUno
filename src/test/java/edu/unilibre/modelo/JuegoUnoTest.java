@@ -64,7 +64,7 @@ class JuegoUnoTest {
         }
 
         JuegoUno solo = new JuegoUno();
-        solo.agregarJugador("Ana");
+        solo.agregarJugador("Camilo");
         assertThrows(IllegalStateException.class, solo::iniciarJuego);
         assertThrows(IllegalStateException.class, () -> juego.agregarJugador("Otro"));
         assertThrows(UnsupportedOperationException.class, () -> juego.getJugadores().add(new Jugador("X")));

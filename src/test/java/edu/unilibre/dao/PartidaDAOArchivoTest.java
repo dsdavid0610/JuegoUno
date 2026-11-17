@@ -27,9 +27,9 @@ class PartidaDAOArchivoTest {
 
         Path archivo = carpeta.resolve("a").resolve("historial.csv");
         PartidaDAOArchivo dao = new PartidaDAOArchivo(archivo);
-        dao.guardar(partida(1, "Ana"));
-        dao.guardar(partida(2, "Luis"));
-        dao.guardar(partida(3, "Ana;Maria"));
+        dao.guardar(partida(1, "Karol"));
+        dao.guardar(partida(2, "Enrique"));
+        dao.guardar(partida(3, "Laura;Maria"));
         assertTrue(Files.exists(archivo));
 
         PartidaDAOArchivo reabierto = new PartidaDAOArchivo(archivo);
@@ -38,16 +38,16 @@ class PartidaDAOArchivoTest {
         assertEquals(LocalDate.of(2026, 10, 27), leida.getFecha());
         assertEquals(270, leida.getPuntosGanador());
         assertEquals(6, leida.getRondas());
-        assertEquals("Ana,Maria", reabierto.buscarPorId(3).orElseThrow().getNombreHumano());
+        assertEquals("Laura,Maria", reabierto.buscarPorId(3).orElseThrow().getNombreHumano());
         assertEquals(4, reabierto.siguienteId());
 
         assertTrue(dao.eliminar(1));
         assertFalse(dao.eliminar(1));
-        dao.actualizar(partida(2, "Luisa"));
+        dao.actualizar(partida(2, "Natalia"));
         PartidaDAOArchivo despues = new PartidaDAOArchivo(archivo);
         assertEquals(2, despues.listarTodos().size());
-        assertEquals("Luisa", despues.buscarPorId(2).orElseThrow().getNombreHumano());
-        assertEquals(1, despues.buscarPorJugador("luisa").size());
+        assertEquals("Natalia", despues.buscarPorId(2).orElseThrow().getNombreHumano());
+        assertEquals(1, despues.buscarPorJugador("Natalia").size());
 
         Files.write(archivo, List.of(
                 "1;2026-10-27;Ana;Robot 1;false;270;6",
@@ -58,8 +58,8 @@ class PartidaDAOArchivoTest {
         assertEquals(1, dao.listarTodos().size());
 
         PartidaDAOMemoria origen = new PartidaDAOMemoria();
-        origen.guardar(partida(1, "Ana"));
-        origen.guardar(partida(5, "Pedro"));
+        origen.guardar(partida(1, "Valery"));
+        origen.guardar(partida(5, "Samuel"));
         PartidaDAOArchivo destino = new PartidaDAOArchivo(carpeta.resolve("copia.csv"));
         destino.operaciones(new ServicioHistorial(origen));
         assertEquals(2, new PartidaDAOArchivo(carpeta.resolve("copia.csv")).listarTodos().size());

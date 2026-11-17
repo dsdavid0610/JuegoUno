@@ -47,7 +47,7 @@ class TableroPanelTest {
     @Test
     void detectaElTurnoLosClicsLosBotonesYSePintaTodo() {
         JuegoUno juego = new JuegoUno();
-        juego.agregarJugador("Ana");
+        juego.agregarJugador("Carlos");
         juego.agregarJugador("Robot 1");
         juego.agregarJugador("Robot 2");
         juego.agregarJugador("Robot 3");

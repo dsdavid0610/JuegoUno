@@ -35,13 +35,13 @@ class VentanaUnoTest {
         javax.swing.SwingUtilities.invokeAndWait(() -> {
             VentanaUno ventana = new VentanaUno();
             assertDoesNotThrow(() -> ventana.iniciar("Ana", 0));
-            ventana.iniciar("Ana", 3);
+            ventana.iniciar("Karol", 3);
             ventana.robar();
             ventana.robot();
             ventana.jugarTurnoRobot();
             ventana.decirUno();
 
-            ventana.iniciar("Ana", 3);
+            ventana.iniciar("Karol", 3);
             JuegoUno juego = juegoDe(ventana);
             Jugador ana = juego.getJugadores().get(0);
             for (Jugador robot : juego.getJugadores().subList(1, 4)) {

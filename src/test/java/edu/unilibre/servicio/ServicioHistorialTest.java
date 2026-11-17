@@ -10,7 +10,7 @@ class ServicioHistorialTest {
 
     private JuegoUno nuevoJuego() {
         JuegoUno juego = new JuegoUno();
-        juego.agregarJugador("Ana");
+        juego.agregarJugador("Juan");
         juego.agregarJugador("Robot 1");
         juego.agregarJugador("Robot 2");
         juego.agregarJugador("Robot 3");
@@ -41,7 +41,7 @@ class ServicioHistorialTest {
         ganarPartida(ganaHumano, ganaHumano.getJugadores().get(0));
         PartidaDTO primera = servicio.registrarPartida(ganaHumano);
         assertEquals(1, primera.getId());
-        assertEquals("Ana", primera.getNombreGanador());
+        assertEquals("Juan", primera.getNombreGanador());
         assertTrue(primera.isGanoHumano());
         assertTrue(primera.getPuntosGanador() >= 250);
 

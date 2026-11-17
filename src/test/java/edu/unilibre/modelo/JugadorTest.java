@@ -8,8 +8,8 @@ class JugadorTest {
     @Test
     void manejaSuManoYSusPuntos() {
         assertThrows(IllegalArgumentException.class, () -> new Jugador(" "));
-        Jugador jugador = new Jugador("Ana");
-        assertEquals("Ana", jugador.getNombre());
+        Jugador jugador = new Jugador("Jose");
+        assertEquals("Jose", jugador.getNombre());
         assertTrue(jugador.gano());
 
         Carta a = new Carta("ROJO", "1");

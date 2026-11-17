@@ -17,20 +17,20 @@ class PartidaDAOMemoriaTest {
         PartidaDAOMemoria dao = new PartidaDAOMemoria();
         assertEquals(1, dao.siguienteId());
 
-        dao.guardar(partida(1, "Ana"));
-        dao.guardar(partida(2, "Luis"));
+        dao.guardar(partida(1, "Natalia"));
+        dao.guardar(partida(2, "Sebastian"));
         assertEquals(3, dao.siguienteId());
         assertThrows(IllegalArgumentException.class, () -> dao.guardar(partida(1, "Otra")));
         assertThrows(IllegalArgumentException.class, () -> dao.guardar(null));
-        assertEquals("Ana", dao.buscarPorId(1).orElseThrow().getNombreHumano());
+        assertEquals("Natalia", dao.buscarPorId(1).orElseThrow().getNombreHumano());
         assertTrue(dao.buscarPorId(99).isEmpty());
 
         dao.listarTodos().clear();
         assertEquals(2, dao.listarTodos().size());
-        assertEquals(1, dao.buscarPorJugador("ANA").size());
+        assertEquals(1, dao.buscarPorJugador("NATALIA").size());
 
-        dao.actualizar(partida(2, "Luisa"));
-        assertEquals("Luisa", dao.buscarPorId(2).orElseThrow().getNombreHumano());
+        dao.actualizar(partida(2, "Juliana"));
+        assertEquals("Juliana", dao.buscarPorId(2).orElseThrow().getNombreHumano());
         assertThrows(IllegalArgumentException.class, () -> dao.actualizar(partida(9, "Nadie")));
 
         assertTrue(dao.eliminar(1));
@@ -38,8 +38,8 @@ class PartidaDAOMemoriaTest {
         assertEquals(1, dao.listarTodos().size());
 
         PartidaDAOMemoria otro = new PartidaDAOMemoria();
-        otro.guardar(partida(1, "Ana"));
-        otro.guardar(partida(2, "Luisa"));
+        otro.guardar(partida(1, "Natalia"));
+        otro.guardar(partida(2, "Juliana"));
         dao.operaciones(new ServicioHistorial(otro));
         assertEquals(2, dao.listarTodos().size());
     }

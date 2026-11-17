@@ -9,10 +9,10 @@ class DTOTest {
     @Test
     void losDTOTransportanSusDatos() {
         LocalDate hoy = LocalDate.of(2026, 10, 27);
-        PartidaDTO p = PartidaDTO.crear(3, hoy, "Ana", "Robot 2", false, 265, 5);
+        PartidaDTO p = PartidaDTO.crear(3, hoy, "Maria", "Robot 2", false, 265, 5);
         assertEquals(3, p.getId());
         assertEquals(hoy, p.getFecha());
-        assertEquals("Ana", p.getNombreHumano());
+        assertEquals("Maria", p.getNombreHumano());
         assertEquals("Robot 2", p.getNombreGanador());
         assertFalse(p.isGanoHumano());
         assertEquals(265, p.getPuntosGanador());
