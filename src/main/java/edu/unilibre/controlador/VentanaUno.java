@@ -75,7 +75,7 @@ public class VentanaUno extends JFrame implements InicioMenuPanel, AccionesTable
     private int robotsActuales;
 
     public VentanaUno() {
-        super("Juego - UNO");
+        super("Juego - UNO - Software");
         this.juego = new JuegoUno();
         this.estrategia = new RobotEstandar();
         this.historial = new ServicioHistorial(new PartidaDAOArchivo(Paths.get("historial_uno.csv")));
@@ -97,8 +97,6 @@ public class VentanaUno extends JFrame implements InicioMenuPanel, AccionesTable
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new VentanaUno().setVisible(true));
     }
-
-    // ------------------------------------------------------------------ InicioMenuPanel
 
     @Override
     public void iniciar(String nombreHumano, int cantidadRobots) {
@@ -127,8 +125,6 @@ public class VentanaUno extends JFrame implements InicioMenuPanel, AccionesTable
         robot();
     }
 
-    // ------------------------------------------------------------------ AccionesTableroPanel
-
     @Override
     public void jugar(Carta carta) {
         if (juego.hayGanador() || !tablero.esTurnoHumano()) {
@@ -153,7 +149,6 @@ public class VentanaUno extends JFrame implements InicioMenuPanel, AccionesTable
         tablero.mostrarToast(mensaje.toString(), error);
         despuesDeJugada();
     }
-
 
     @Override
     public void robar() {
@@ -216,9 +211,6 @@ public class VentanaUno extends JFrame implements InicioMenuPanel, AccionesTable
         cartas.show(contenedor, "menu");
     }
 
-    // ------------------------------------------------------------------ turno de los robots
-
-
     public void jugarTurnoRobot() {
         if (juego.hayGanador()) {
             return;
@@ -277,8 +269,6 @@ public class VentanaUno extends JFrame implements InicioMenuPanel, AccionesTable
         }
     }
 
-    // ------------------------------------------------------------------ fin de ronda y de partida
-
     private void despuesDeJugada() {
         refrescar();
         if (juego.hayGanador()) {
@@ -295,7 +285,6 @@ public class VentanaUno extends JFrame implements InicioMenuPanel, AccionesTable
         }
         mostrarResultado();
     }
-
 
     public void guardarHistorial() {
         try {
@@ -321,8 +310,6 @@ public class VentanaUno extends JFrame implements InicioMenuPanel, AccionesTable
         JOptionPane.showMessageDialog(this, new JScrollPane(txtArea), "Historial de partidas",
                 JOptionPane.PLAIN_MESSAGE);
     }
-
-    // ------------------------------------------------------------------ textos y pantallas
 
     private boolean anotarPenalizacionUno(StringBuilder mensaje) {
         if (!juego.huboPenalizacionUno()) {
