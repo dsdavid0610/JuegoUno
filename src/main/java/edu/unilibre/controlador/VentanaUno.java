@@ -75,7 +75,7 @@ public class VentanaUno extends JFrame implements InicioMenuPanel, AccionesTable
     private int robotsActuales;
 
     public VentanaUno() {
-        super("Juego - UNO - Software");
+        super("Juego - UNO");
         this.juego = new JuegoUno();
         this.estrategia = new RobotEstandar();
         this.historial = new ServicioHistorial(new PartidaDAOArchivo(Paths.get("historial_uno.csv")));
