@@ -2,9 +2,14 @@ package edu.unilibre.modelo;
 
 import java.util.Arrays;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
+@Setter
+
 public class Carta {
 
     private final String color;

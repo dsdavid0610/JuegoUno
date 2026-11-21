@@ -1,8 +1,6 @@
 package edu.unilibre.dto;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.*;
 
 public interface EstadisticasDTO {
     int getPartidas();
@@ -19,6 +17,8 @@ public interface EstadisticasDTO {
     }
 
     @Getter
+    @Setter
+    @ToString
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
     final class Implementacion implements EstadisticasDTO {
         private final int partidas;

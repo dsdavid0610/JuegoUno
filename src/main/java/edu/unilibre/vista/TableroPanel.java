@@ -3,6 +3,10 @@ package edu.unilibre.vista;
 import edu.unilibre.modelo.Carta;
 import edu.unilibre.modelo.JuegoUno;
 import edu.unilibre.modelo.Jugador;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -28,6 +32,10 @@ import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@ToString
 
 public class TableroPanel extends JPanel {
 
@@ -113,7 +121,6 @@ public class TableroPanel extends JPanel {
         repaint();
     }
 
-    // ------------------------------------------------------------------ geometría (lienzo virtual)
 
     private double escala() {
         double s = Math.min(getWidth() / (double) 1200, getHeight() / (double) 800);
@@ -218,7 +225,6 @@ public class TableroPanel extends JPanel {
         return !carta.esMasCuatro() || !humano.tieneCartaDeColor(juego.getColorActual());
     }
 
-    // ------------------------------------------------------------------ interacción
 
     private void alHacerClic(int x, int y) {
         Point2D p = aVirtual(x, y);
@@ -248,7 +254,6 @@ public class TableroPanel extends JPanel {
         acciones.jugar(carta);
     }
 
-    // ------------------------------------------------------------------ pintado
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -521,7 +526,6 @@ public class TableroPanel extends JPanel {
         centrado(g2, mensajeToast, 600, 546, Color.WHITE);
     }
 
-    // ------------------------------------------------------------------ fin de ronda
 
     private void dibujarFinDeRonda(Graphics2D g2) {
         Jugador ganador = juego.getGanador();

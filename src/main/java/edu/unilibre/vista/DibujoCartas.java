@@ -1,5 +1,10 @@
 package edu.unilibre.vista;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
@@ -12,6 +17,10 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Path2D;
 import java.awt.geom.RoundRectangle2D;
 
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
 
 public final class DibujoCartas {
 

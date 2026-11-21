@@ -5,8 +5,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
 
 public class JuegoUno {
 
@@ -18,20 +25,14 @@ public class JuegoUno {
     private boolean rondaIniciada;
     private boolean rondaTerminada;
     private boolean unoPendiente;
-    @Getter
     private Jugador jugadorQueDebeDecirUno;
     private boolean penalizadoPorUno;
-    @Getter
     private Jugador jugadorPenalizadoUno;
     private int puntosGanador;
-    @Getter
     private int numeroRonda;
-    @Getter
     private Jugador ganadorPartida;
-    @Getter
     private String colorActual;
     private boolean colorPendiente;
-    @Getter
     private int penalizacionAcumulada;
 
     public JuegoUno() {
@@ -41,7 +42,6 @@ public class JuegoUno {
         reiniciarEstado();
     }
 
-    // ------------------------------------------------------------------ jugadores
 
     public void agregarJugador(String nombre) {
         if (rondaIniciada) {
@@ -67,7 +67,6 @@ public class JuegoUno {
         return jugadores.size();
     }
 
-    // ------------------------------------------------------------------ inicio de partida y rondas
 
     public void iniciarJuego() {
         if (jugadores.size() < 2) {
@@ -142,7 +141,6 @@ public class JuegoUno {
         penalizacionAcumulada = 0;
     }
 
-    // ------------------------------------------------------------------ jugadas
 
     public void jugarCarta(Carta carta) {
         validarRondaActiva();
@@ -295,7 +293,6 @@ public class JuegoUno {
         }
     }
 
-    // ------------------------------------------------------------------ mazo y turnos
 
     private Carta robarDelMazo() {
         if (mazo.cantidadCartas() == 0) {
@@ -339,7 +336,6 @@ public class JuegoUno {
         }
     }
 
-    // ------------------------------------------------------------------ consultas
 
     public Jugador getJugadorActual() {
         if (jugadores.isEmpty()) {
@@ -395,7 +391,6 @@ public class JuegoUno {
                 .anyMatch(carta -> carta.esMasDos() || carta.esMasCuatro());
     }
 
-    // ------------------------------------------------------------------ Mazo (composición)
 
     public static class Mazo {
 

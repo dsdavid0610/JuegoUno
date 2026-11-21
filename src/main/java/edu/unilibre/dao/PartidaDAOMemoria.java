@@ -2,12 +2,19 @@ package edu.unilibre.dao;
 
 import edu.unilibre.dto.PartidaDTO;
 import edu.unilibre.servicio.ServicioHistorial;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
 public class PartidaDAOMemoria implements PartidaDAO {
 
     private final List<PartidaDTO> datos = new ArrayList<>();

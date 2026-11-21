@@ -2,9 +2,7 @@ package edu.unilibre.dto;
 
 import java.time.LocalDate;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.*;
 
 public interface PartidaDTO {
     int getId();
@@ -28,6 +26,8 @@ public interface PartidaDTO {
     }
 
     @Getter
+    @Setter
+    @ToString
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
     final class Implementacion implements PartidaDTO {
         private final int id;

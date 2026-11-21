@@ -5,12 +5,16 @@ import edu.unilibre.dto.EstadisticasDTO;
 import edu.unilibre.dto.PartidaDTO;
 import edu.unilibre.modelo.JuegoUno;
 import edu.unilibre.modelo.Jugador;
+import lombok.*;
 
 import javax.swing.JLabel;
 import java.time.LocalDate;
 import java.util.List;
 
-
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
 public class ServicioHistorial {
 
     private final PartidaDAO dao;

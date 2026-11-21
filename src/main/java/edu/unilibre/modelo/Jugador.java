@@ -4,15 +4,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
 
 
 public class Jugador {
 
-    @Getter
     private final String nombre;
     private final List<Carta> mano;
-    @Getter
     private int puntos;
 
     public Jugador(String nombre) {

@@ -2,6 +2,10 @@ package edu.unilibre.dao;
 
 import edu.unilibre.dto.PartidaDTO;
 import edu.unilibre.servicio.ServicioHistorial;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -12,6 +16,11 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
 public class PartidaDAOArchivo implements PartidaDAO {
 
     private static final String separador = ";";

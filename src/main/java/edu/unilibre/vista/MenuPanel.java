@@ -1,5 +1,10 @@
 package edu.unilibre.vista;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -21,6 +26,12 @@ import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.RoundRectangle2D;
+
+
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
 
 public class MenuPanel extends JPanel {
 
@@ -202,7 +213,6 @@ public class MenuPanel extends JPanel {
         return lblError;
     }
 
-    // ------------------------------------------------------------------ pintado
 
     @Override
     public void doLayout() {
@@ -292,7 +302,6 @@ public class MenuPanel extends JPanel {
         gl.dispose();
     }
 
-    // ------------------------------------------------------------------ componentes propios
 
 
     private JComponent insignia(int numero) {
