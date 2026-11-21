@@ -84,10 +84,10 @@ public class VentanaUno extends JFrame implements InicioMenuPanel, AccionesTable
         this.etiquetas = new JLabel[4];
         this.menu = new MenuPanel(this, this::mostrarHistorial);
 
-        contenedor.add(menu, "menu");
+        contenedor.add(menu, "Menu");
         contenedor.setPreferredSize(new Dimension(1050, 700));
         setContentPane(contenedor);
-        cartas.show(contenedor, "menu");
+        cartas.show(contenedor, "Menu");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(880, 640));
         pack();
@@ -208,7 +208,7 @@ public class VentanaUno extends JFrame implements InicioMenuPanel, AccionesTable
     @Override
     public void volverMenu() {
         detenerTemporizador();
-        cartas.show(contenedor, "menu");
+        cartas.show(contenedor, "Menu");
     }
 
     public void jugarTurnoRobot() {
@@ -358,7 +358,7 @@ public class VentanaUno extends JFrame implements InicioMenuPanel, AccionesTable
         boolean humanoGano = ganador == humano;
         ((JLabel) panelResultado.getClientProperty("tituloPuntos")).setText(fin ? "PUNTUACIÓN FINAL" : "PUNTUACIÓN");
         if (fin) {
-            lblTurno.setText(humanoGano ? "CAMPEONA" : "FIN DE LA PARTIDA");
+            lblTurno.setText(humanoGano ? "CAMPEON" : "FIN DE LA PARTIDA");
             lblMesa.setText(humanoGano ? "¡Victoria!" : "Derrota");
             lblMazo.setText(humanoGano
                     ? "Terminaste la partida en " + rondas(juego.getNumeroRonda())
